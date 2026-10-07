@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Pelatihan UKP - AKP2I</title>
+    <!-- Plus Jakarta Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js untuk Engine Framework tanpa Build -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+    </style>
+</head>
+<body x-data="appData()" class="text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-emerald-700 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="font-bold text-xl cursor-pointer" @click="view = 'home'">UKP AKP2I</div>
+            <div class="space-x-4">
+                <button @click="view = 'home'" class="hover:text-emerald-200 text-sm md:text-base font-semibold">Beranda</button>
+                <button @click="view = 'check'" class="hover:text-emerald-200 text-sm md:text-base font-semibold">Cek Status</button>
+                <button @click="view = 'admin_login'" x-show="!isAdmin" class="hover:text-emerald-200 text-sm md:text-base font-semibold">Admin</button>
+                <button @click="view = 'admin_dashboard'" x-show="isAdmin" class="bg-white text-emerald-700 px-3 py-1 rounded text-sm md:text-base font-bold">Dashboard Admin</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="max-w-6xl mx-auto p-4 mt-6 min-h-screen">
+        
+        <!-- HOME: Kategori Pelatihan -->
+        <div x-show="view === 'home'" class="space-y-8" x-transition.opacity>
+            <div class="text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-emerald-800 mb-2">Pelatihan Uji Kompetensi Perpajakan (UKP)</h1>
+                <p class="text-gray-600">Persiapkan Diri Menghadapi Uji Kompetensi Perpajakan bersama AKP2I</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card Tingkat A -->
+                <div class="bg-white rounded-xl shadow p-6 border-t-8 border-emerald-500 hover:shadow-lg">
+                    <h2 class="text-2xl font-bold text-center text-emerald-700 mb-4">TINGKAT A</h2>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-700 h-32">
+                        <li>✔️ PPh OP & SPT PPh OP</li>
+                        <li>✔️ KUP, PPSP, PP</li>
+                        <li>✔️ PPh Pot/Put</li>
+                        <li>✔️ PPN & SPT PPN</li>
+                        <li>✔️ Bea Meterai</li>
+                    </ul>
+                    <div class="text-center mb-4">
+                        <p class="text-gray-500 text-sm">Investasi</p>
+                        <p class="text-2xl font-bold text-emerald-600">Rp 1.500.000</p>
+                    </div>
+                    <button @click="mulaiDaftar('Tingkat A')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg transition-colors">Daftar Sekarang</button>
+                </div>
+
+                <!-- Card Tingkat B -->
+                <div class="bg-white rounded-xl shadow p-6 border-t-8 border-blue-500 hover:shadow-lg">
+                    <h2 class="text-2xl font-bold text-center text-blue-700 mb-4">TINGKAT B</h2>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-700 h-32">
+                        <li>✔️ Semua Materi Tingkat A</li>
+                        <li>✔️ PBB-P5L</li>
+                        <li>✔️ Akuntansi Perpajakan</li>
+                        <li>✔️ PPh Badan & SPT PPh Badan</li>
+                    </ul>
+                    <div class="text-center mb-4">
+                        <p class="text-gray-500 text-sm">Investasi</p>
+                        <p class="text-2xl font-bold text-blue-600">Rp 2.100.000</p>
+                    </div>
+                    <button @click="mulaiDaftar('Tingkat B')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition-colors">Daftar Sekarang</button>
+                </div>
+
+                <!-- Card Tingkat C -->
+                <div class="bg-white rounded-xl shadow p-6 border-t-8 border-red-500 hover:shadow-lg">
+                    <h2 class="text-2xl font-bold text-center text-red-700 mb-4">TINGKAT C</h2>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-700 h-32">
+                        <li>✔️ Semua Materi Tingkat A & B</li>
+                        <li>✔️ PPh Badan & SPT PPh Badan</li>
+                        <li>✔️ Pajak Internasional</li>
+                    </ul>
+                    <div class="text-center mb-4">
+                        <p class="text-gray-500 text-sm">Investasi</p>
+                        <p class="text-2xl font-bold text-red-600">Rp 2.500.000</p>
+                    </div>
+                    <button @click="mulaiDaftar('Tingkat C')" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded-lg transition-colors">Daftar Sekarang</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORM PENDAFTARAN -->
+        <div x-show="view === 'register'" class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow" x-transition.opacity>
+            <h2 class="text-2xl font-bold mb-6">Formulir Pendaftaran</h2>
+            <form @submit.prevent="submitRegistrasi">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Pilihan Tingkat</label>
+                    <input type="text" x-model="reg.tingkat" readonly class="w-full bg-gray-100 border rounded-lg py-2 px-3 outline-none text-gray-600 font-bold">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Nama Lengkap</label>
+                    <input type="text" x-model="reg.nama" required class="w-full border rounded-lg py-2 px-3 focus:border-emerald-500">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                    <input type="email" x-model="reg.email" required class="w-full border rounded-lg py-2 px-3 focus:border-emerald-500">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Nomor WhatsApp Aktif</label>
+                    <input type="number" x-model="reg.noWa" required class="w-full border rounded-lg py-2 px-3 focus:border-emerald-500" placeholder="Contoh: 082122285048">
+                </div>
+                <button type="submit" :disabled="loading" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg flex justify-center">
+                    <span x-show="!loading">Lanjutkan & Dapat Kode</span>
+                    <span x-show="loading">Memproses Data...</span>
+                </button>
+                <button type="button" @click="view = 'home'" class="w-full mt-3 text-gray-600 font-bold py-2">Batal</button>
+            </form>
+        </div>
+
+        <!-- UPLOAD BUKTI & INSTRUKSI PEMBAYARAN -->
+        <div x-show="view === 'payment'" class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow text-center" x-transition.opacity>
+            <div class="bg-emerald-50 text-emerald-800 p-4 rounded-lg mb-6 border border-emerald-200">
+                <h3 class="font-bold text-lg mb-1">Pendaftaran Diterima!</h3>
+                <p class="text-sm">Kode Pendaftaran Anda:</p>
+                <p class="text-3xl font-mono font-bold my-2" x-text="hasil.kode"></p>
+                <p class="text-sm font-semibold text-red-600">⚠ Harap catat dan simpan kode di atas.</p>
+            </div>
+            
+            <h3 class="text-xl font-bold mb-4">Instruksi Pembayaran</h3>
+            <p class="text-gray-600 mb-2">Silakan selesaikan pembayaran sebesar:</p>
+            <p class="text-3xl font-bold text-emerald-700 mb-4" x-text="'Rp ' + hasil.total.toLocaleString('id-ID')"></p>
+            
+            <div class="text-sm text-left bg-gray-50 p-4 rounded-lg mb-4 whitespace-pre-wrap border" x-text="pengaturan.rekening">
+            </div>
+            
+            <hr class="my-6">
+            <h3 class="font-bold mb-4">Upload Bukti Transfer / QRIS</h3>
+            <form @submit.prevent="uploadBukti">
+                <input type="file" @change="prosesFile" accept="image/*,.pdf" required class="w-full border p-2 rounded mb-4 text-sm bg-gray-50">
+                <button type="submit" :disabled="loading" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg">
+                    <span x-show="!loading">Upload Bukti Pembayaran</span>
+                    <span x-show="loading">Sedang Mengunggah...</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- CEK STATUS PENDAFTARAN -->
+        <div x-show="view === 'check'" class="max-w-md mx-auto bg-white p-8 rounded-xl shadow" x-transition.opacity>
+            <h2 class="text-2xl font-bold mb-6 text-center">Cek Status Anda</h2>
+            <form @submit.prevent="cekStatus">
+                <div class="mb-4">
+                    <input type="text" x-model="cekKode" required placeholder="Ketik Kode Pendaftaran Anda" class="w-full border rounded-lg py-3 px-4 focus:border-emerald-500 font-mono text-center font-bold">
+                </div>
+                <button type="submit" :disabled="loading" class="w-full bg-gray-800 hover:bg-black text-white font-bold py-3 rounded-lg">
+                    <span x-show="!loading">Periksa Status</span>
+                    <span x-show="loading">Mencari Data...</span>
+                </button>
+            </form>
+
+            <div x-show="hasilCek" class="mt-6 p-4 border rounded-lg bg-gray-50">
+                <h3 class="font-bold border-b pb-2 mb-3">Informasi Pendaftar</h3>
+                <p class="text-sm mb-1">Nama: <span class="font-bold" x-text="hasilCek.nama"></span></p>
+                <p class="text-sm mb-1">Tingkat: <span class="font-bold" x-text="hasilCek.tingkat"></span></p>
+                <p class="text-sm mb-4">Status: 
+                    <span class="px-2 py-1 rounded text-xs font-bold text-white ml-1" 
+                        :class="{'bg-yellow-500': hasilCek.status_pendaftaran.includes('Menunggu'), 'bg-emerald-500': hasilCek.status_pendaftaran.includes('Terverifikasi'), 'bg-red-500': hasilCek.status_pendaftaran.includes('Ditolak')}" 
+                        x-text="hasilCek.status_pendaftaran">
+                    </span>
+                </p>
+                
+                <button x-show="hasilCek.status_pendaftaran === 'Menunggu Pembayaran'" @click="view = 'payment'; hasil.kode = hasilCek.kode; hasil.total = hasilCek.harga" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded text-sm font-bold">
+                    Upload Bukti Transfer
+                </button>
+            </div>
+        </div>
+
+        <!-- LOGIN ADMIN -->
+        <div x-show="view === 'admin_login'" class="max-w-sm mx-auto bg-white p-8 rounded-xl shadow mt-10" x-transition.opacity>
+            <h2 class="text-xl font-bold mb-6 text-center">Akses Admin AKP2I</h2>
+            <form @submit.prevent="loginAdmin">
+                <input type="text" x-model="admin.user" required placeholder="Username" class="w-full border rounded mb-4 py-2 px-3">
+                <input type="password" x-model="admin.pass" required placeholder="Password" class="w-full border rounded mb-6 py-2 px-3">
+                <button type="submit" :disabled="loading" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-2 rounded">Login</button>
+            </form>
+        </div>
+
+        <!-- DASHBOARD ADMIN -->
+        <div x-show="view === 'admin_dashboard' && isAdmin" class="bg-white p-6 rounded-xl shadow" x-transition.opacity>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <h2 class="text-2xl font-bold text-emerald-800">Manajemen Pendaftaran (Real-Time)</h2>
+                <div class="space-x-2 flex">
+                    <button @click="muatDataPeserta" class="bg-blue-100 text-blue-700 px-3 py-1.5 rounded text-sm font-bold">Refresh Data</button>
+                    <button @click="tampilPengaturan = !tampilPengaturan" class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded text-sm font-bold">Pengaturan</button>
+                    <button @click="logout" class="bg-red-100 text-red-700 px-3 py-1.5 rounded text-sm font-bold">Keluar</button>
+                </div>
+            </div>
+
+            <!-- Panel Pengaturan (Ubah Profil & Metode Pembayaran) -->
+            <div x-show="tampilPengaturan" class="mb-6 p-5 border rounded-xl bg-gray-50">
+                <h3 class="font-bold mb-4 text-emerald-700">Pengaturan Profil & Modul Pembayaran</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-bold text-gray-600">Username Admin</label>
+                        <input type="text" x-model="pengaturan.username" class="w-full border rounded px-3 py-2 text-sm mt-1">
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-gray-600">Password Baru</label>
+                        <input type="password" x-model="pengaturan.password" class="w-full border rounded px-3 py-2 text-sm mt-1" placeholder="(Isi jika ingin ubah)">
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-gray-600">Nama Tampil Admin</label>
+                        <input type="text" x-model="pengaturan.admin_name" class="w-full border rounded px-3 py-2 text-sm mt-1">
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-gray-600">Email Admin</label>
+                        <input type="email" x-model="pengaturan.admin_email" class="w-full border rounded px-3 py-2 text-sm mt-1">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="text-xs font-bold text-gray-600">Metode Pembayaran (Transfer Bank, QRIS Manual, dll)</label>
+                        <textarea x-model="pengaturan.rekening" class="w-full border rounded px-3 py-2 text-sm mt-1" rows="3"></textarea>
+                    </div>
+                </div>
+                <button @click="simpanPengaturan" class="mt-4 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded text-sm font-bold w-full md:w-auto">Update Pengaturan</button>
+            </div>
+
+            <!-- Tabel Data Peserta -->
+            <div class="overflow-x-auto rounded-lg border">
+                <table class="w-full text-left border-collapse whitespace-nowrap">
+                    <thead>
+                        <tr class="bg-gray-100 border-b">
+                            <th class="p-4 text-sm font-bold text-gray-600">Kode</th>
+                            <th class="p-4 text-sm font-bold text-gray-600">Data Pendaftar</th>
+                            <th class="p-4 text-sm font-bold text-gray-600">Tingkat</th>
+                            <th class="p-4 text-sm font-bold text-gray-600">Bukti</th>
+                            <th class="p-4 text-sm font-bold text-gray-600">Status</th>
+                            <th class="p-4 text-sm font-bold text-gray-600 text-center">Aksi (Update & WA)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template x-for="p in peserta" :key="p['Kode Pendaftaran']">
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="p-4 font-mono text-sm font-bold text-emerald-700" x-text="p['Kode Pendaftaran']"></td>
+                                <td class="p-4">
+                                    <div class="font-bold text-sm" x-text="p['Nama']"></div>
+                                    <div class="text-xs text-gray-500" x-text="p['No WA']"></div>
+                                </td>
+                                <td class="p-4 text-sm font-semibold" x-text="p['Tingkat']"></td>
+                                <td class="p-4">
+                                    <template x-if="p['Bukti Pembayaran']">
+                                        <a :href="p['Bukti Pembayaran']" target="_blank" class="text-blue-600 hover:underline text-xs font-bold">📂 Buka File</a>
+                                    </template>
+                                    <template x-if="!p['Bukti Pembayaran']">
+                                        <span class="text-xs text-gray-400 font-semibold">-</span>
+                                    </template>
+                                </td>
+                                <td class="p-4">
+                                    <select x-model="p['Status']" class="text-xs font-bold border rounded p-1" :class="{'bg-emerald-100 text-emerald-800 border-emerald-300': p['Status'] === 'Terverifikasi', 'bg-yellow-100 border-yellow-300 text-yellow-800': p['Status'].includes('Menunggu'), 'bg-red-100 text-red-800': p['Status'] === 'Ditolak'}">
+                                        <option value="Menunggu Pembayaran">Menunggu Pembayaran</option>
+                                        <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
+                                        <option value="Terverifikasi">Terverifikasi</option>
+                                        <option value="Ditolak">Ditolak</option>
+                                    </select>
+                                </td>
+                                <td class="p-4 text-center">
+                                    <button @click="updateStatusPeserta(p['Kode Pendaftaran'], p['Status'], p['No WA'], p['Nama'])" class="bg-gray-800 hover:bg-black text-white px-3 py-1.5 rounded text-xs font-bold">Simpan & Notif WA</button>
+                                </td>
+                            </tr>
+                        </template>
+                        <tr x-show="peserta.length === 0">
+                            <td colspan="6" class="text-center p-8 text-gray-500 font-medium">Belum ada data pendaftar.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script Utama (Alpine JS) -->
+    <script>
+        // MASUKKAN LINK HASIL DEPLOY GOOGLE APPS SCRIPT DI SINI!
+        const URL_SCRIPT = 'PASTE_LINK_SCRIPT_DISINI';
+
+        function appData() {
+            return {
+                view: 'home',
+                loading: false,
+                isAdmin: false,
+                tampilPengaturan: false,
+                
+                // Form Registrasi
+                reg: { tingkat: '', nama: '', email: '', noWa: '' },
+                hasil: { kode: '', total: 0 },
+                
+                // Upload File Base64
+                fileData: '',
+                fileName: '',
+                
+                // Cek Status
+                cekKode: '',
+                hasilCek: false,
+                
+                // Admin Area
+                admin: { user: '', pass: '' },
+                peserta: [],
+                pengaturan: { username: '', password: '', admin_name: '', admin_email: '', rekening: '' },
+
+                init() {
+                    if(sessionStorage.getItem('admin_login') === '1') {
+                        this.isAdmin = true;
+                        this.ambilPengaturan();
+                    }
+                },
+
+                mulaiDaftar(level) {
+                    this.reg.tingkat = level;
+                    this.view = 'register';
+                },
+
+                async submitRegistrasi() {
+                    this.loading = true;
+                    try {
+                        let formData = new FormData();
+                        formData.append('action', 'register');
+                        formData.append('nama', this.reg.nama);
+                        formData.append('email', this.reg.email);
+                        formData.append('noWa', this.reg.noWa);
+                        formData.append('tingkat', this.reg.tingkat);
+
+                        let req = await fetch(URL_SCRIPT, { method: 'POST', body: formData });
+                        let res = await req.json();
+                        
+                        if(res.status === 'success') {
+                            this.hasil.kode = res.kode;
+                            this.hasil.total = res.total;
+                            await this.ambilPengaturan(); // Muat no rekening
+                            this.view = 'payment';
+                            this.notifWA(this.reg.noWa, `Halo ${this.reg.nama},\nPendaftaran ${this.reg.tingkat} (Kode: ${res.kode}) DITERIMA.\n\nHarap lanjutkan pembayaran agar dapat diverifikasi.\n\nSalam,\nAKP2I`);
+                        }
+                    } catch(e) {
+                        alert("Terjadi kesalahan koneksi.");
+                    }
+                    this.loading = false;
+                },
+
+                prosesFile(e) {
+                    let file = e.target.files[0];
+                    if(!file) return;
+                    this.fileName = file.name;
+                    let reader = new FileReader();
+                    reader.onload = (event) => {
+                        this.fileData = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                },
+
+                async uploadBukti() {
+                    if(!this.fileData) return alert("Pilih file bukti transfer!");
+                    this.loading = true;
+                    try {
+                        let formData = new URLSearchParams();
+                        formData.append('action', 'upload_payment');
+                        formData.append('kode', this.hasil.kode);
+                        formData.append('fileData', this.fileData);
+                        formData.append('fileName', this.fileName);
+
+                        let req = await fetch(URL_SCRIPT, { method: 'POST', body: formData, headers: {'Content-Type': 'application/x-www-form-urlencoded'} });
+                        let res = await req.json();
+                        if(res.status === 'success') {
+                            alert("Bukti sukses diupload! Kami akan memverifikasi secepatnya.");
+                            this.view = 'home';
+                        }
+                    } catch(e) {
+                        alert("Gagal mengunggah bukti.");
+                    }
+                    this.loading = false;
+                },
+
+                async cekStatus() {
+                    this.loading = true;
+                    this.hasilCek = false;
+                    try {
+                        let req = await fetch(`${URL_SCRIPT}?action=check&kode=${this.cekKode.trim()}`);
+                        let res = await req.json();
+                        if(res.status === 'success') {
+                            this.hasilCek = res.data;
+                            this.ambilPengaturan();
+                        } else {
+                            alert("Kode Tidak Ditemukan.");
+                        }
+                    } catch(e) {
+                        alert("Error saat mencari data.");
+                    }
+                    this.loading = false;
+                },
+
+                async loginAdmin() {
+                    this.loading = true;
+                    try {
+                        let formData = new URLSearchParams();
+                        formData.append('action', 'admin_login');
+                        formData.append('username', this.admin.user);
+                        formData.append('password', this.admin.pass);
+
+                        let req = await fetch(URL_SCRIPT, { method: 'POST', body: formData, headers: {'Content-Type': 'application/x-www-form-urlencoded'} });
+                        let res = await req.json();
+                        
+                        if(res.status === 'success') {
+                            this.isAdmin = true;
+                            sessionStorage.setItem('admin_login', '1');
+                            this.view = 'admin_dashboard';
+                            this.muatDataPeserta();
+                            this.ambilPengaturan();
+                        } else {
+                            alert("Akses Ditolak: Username/Password Salah.");
+                        }
+                    } catch(e) {
+                        alert("Gagal melakukan login.");
+                    }
+                    this.loading = false;
+                },
+                
+                logout() {
+                    this.isAdmin = false;
+                    sessionStorage.clear();
+                    this.view = 'home';
+                },
+
+                async muatDataPeserta() {
+                    try {
+                        let req = await fetch(`${URL_SCRIPT}?action=get_all`);
+                        let res = await req.json();
+                        if(res.status === 'success') {
+                            this.peserta = res.data.reverse(); 
+                        }
+                    } catch(e) { console.log(e); }
+                },
+                
+                async ambilPengaturan() {
+                    try {
+                        let req = await fetch(`${URL_SCRIPT}?action=get_settings`);
+                        let res = await req.json();
+                        if(res.status === 'success') {
+                            this.pengaturan = Object.assign(this.pengaturan, res.data);
+                        }
+                    } catch(e) { console.log(e); }
+                },
+                
+                async simpanPengaturan() {
+                    try {
+                        let updates = JSON.stringify(this.pengaturan);
+                        let formData = new URLSearchParams();
+                        formData.append('action', 'update_settings');
+                        formData.append('updates', updates);
+                        
+                        let req = await fetch(URL_SCRIPT, { method: 'POST', body: formData, headers: {'Content-Type': 'application/x-www-form-urlencoded'} });
+                        let res = await req.json();
+                        if(res.status === 'success') {
+                            alert("Pengaturan Berhasil Disimpan!");
+                            this.pengaturan.password = ""; // Reset kolom pass baru
+                        }
+                    } catch(e) {
+                        alert("Gagal menyimpan pengaturan.");
+                    }
+                },
+
+                async updateStatusPeserta(kode, status, noWa, nama) {
+                    try {
+                        let formData = new URLSearchParams();
+                        formData.append('action', 'update_status');
+                        formData.append('kode', kode);
+                        formData.append('status', status);
+
+                        let req = await fetch(URL_SCRIPT, { method: 'POST', body: formData, headers: {'Content-Type': 'application/x-www-form-urlencoded'} });
+                        let res = await req.json();
+                        if(res.status === 'success') {
+                            let textWa = `Halo ${nama},\n\nPemberitahuan update dari AKP2I.\nStatus pendaftaran Anda dengan kode *${kode}* saat ini adalah: *${status}*.\n\nTerima kasih.`;
+                            this.notifWA(noWa, textWa);
+                        }
+                    } catch(e) {
+                        alert("Gagal update status.");
+                    }
+                },
+
+                notifWA(number, msg) {
+                    // Konversi 08xxx ke 628xxx
+                    let numStr = number.toString().replace(/^0/, '62');
+                    let waURL = `https://wa.me/${numStr}?text=${encodeURIComponent(msg)}`;
+                    // Trigger custom popup sebelum ke WhatsApp
+                    if(confirm("Tindakan ini akan mengalihkan Anda ke Aplikasi WhatsApp untuk mengirim notifikasi status ke pendaftar secara otomatis.\nLanjutkan?")) {
+                        window.open(waURL, '_blank');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
