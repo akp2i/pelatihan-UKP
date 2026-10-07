@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendaftaran UKP Terpadu - AKP2I</title>
+    <title>Pelatihan UKP - AKP2I</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -49,7 +49,6 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                 </div>
                 <div x-show="modal.type === 'loading'" class="text-emerald-600">
-                    <!-- Modern fast spinner -->
                     <svg class="w-8 h-8 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                 </div>
                 <h3 class="text-xl font-extrabold text-gray-800" x-text="modal.title"></h3>
@@ -151,7 +150,7 @@
                 <!-- Section 3: PILIH KELAS (Daftar) -->
                 <div id="pendaftaran-section" class="scroll-mt-24">
                     <div class="text-center mb-16">
-                        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Pilih Tingkat UKP Sesuai Target</h2>
+                        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Pilih Kelas Pelatihan UKP Sesuai Target</h2>
                         <div class="w-20 h-2 bg-emerald-500 rounded-full mx-auto mb-6"></div>
                         <p class="text-gray-600 font-medium">Investasi terbaik untuk jenjang karir profesional Anda.</p>
                     </div>
@@ -162,7 +161,6 @@
                             <div class="bg-gray-50 p-8 rounded-t-3xl border-b text-center group-hover:bg-emerald-50 fast-transition">
                                 <h3 class="text-3xl font-black text-gray-900 mb-2">TINGKAT A</h3>
                                 <p class="text-sm font-bold text-emerald-600 mb-4">Perpajakan Orang Pribadi</p>
-                                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Mulai Dari</p>
                                 <p class="text-3xl font-black text-gray-900 my-1">Rp 1.500.000</p>
                                 <p class="text-xs font-bold text-gray-400 bg-white inline-block px-3 py-1 rounded-full border mt-2">24 - 26 Okt 2026</p>
                             </div>
@@ -184,7 +182,6 @@
                             <div class="bg-blue-50 p-8 rounded-t-3xl border-b border-blue-100 text-center">
                                 <h3 class="text-3xl font-black text-gray-900 mb-2">TINGKAT B</h3>
                                 <p class="text-sm font-bold text-blue-600 mb-4">Orang Pribadi & Badan</p>
-                                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Mulai Dari</p>
                                 <p class="text-3xl font-black text-blue-600 my-1">Rp 2.100.000</p>
                                 <p class="text-xs font-bold text-gray-400 bg-white inline-block px-3 py-1 rounded-full border border-blue-100 mt-2">24 - 29 Okt 2026</p>
                             </div>
@@ -204,7 +201,6 @@
                             <div class="bg-gray-50 p-8 rounded-t-3xl border-b text-center group-hover:bg-red-50 fast-transition">
                                 <h3 class="text-3xl font-black text-gray-900 mb-2">TINGKAT C</h3>
                                 <p class="text-sm font-bold text-red-600 mb-4">Cakupan Paling Luas</p>
-                                <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider">Mulai Dari</p>
                                 <p class="text-3xl font-black text-gray-900 my-1">Rp 2.500.000</p>
                                 <p class="text-xs font-bold text-gray-400 bg-white inline-block px-3 py-1 rounded-full border mt-2">24 - 31 Okt 2026</p>
                             </div>
@@ -220,7 +216,47 @@
                     </div>
                 </div>
 
-                <!-- FAQ Snippet (Footer Area Home) -->
+                <!-- FAQ Section -->
+                <div class="pt-12">
+                    <div class="text-center mb-10">
+                        <h2 class="text-3xl font-black text-gray-900 mb-2">FAQ — Pertanyaan Yang Sering Diajukan</h2>
+                        <div class="w-20 h-1 bg-emerald-500 mx-auto"></div>
+                    </div>
+                    
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
+                        <div class="space-y-6" x-data="{ openFaq: null }">
+                            
+                            <template x-for="(faq, index) in [
+                                { q: '1. Apa itu UKP?', a: 'UKP adalah Uji Kompetensi di bidang perpajakan yang digunakan untuk menguji kompetensi seseorang sesuai klasifikasi yang dipilih.' },
+                                { q: '2. Apa itu SKK?', a: 'SKK adalah Surat Keterangan Kompetensi yang diberikan kepada peserta yang dinyatakan lulus UKP sesuai tingkat yang diikuti.' },
+                                { q: '3. Apakah UKP harus dimulai dari Tingkat A?', a: 'Tidak. Dalam skema baru, peserta dapat memilih langsung tingkat A, B, atau C sesuai kompetensinya.' },
+                                { q: '4. Jika memilih Tingkat B, apakah materi Tingkat A tetap diujikan?', a: 'Ya. Berdasarkan penjelasan skema baru, Tingkat B mencakup materi Tingkat A dan materi Tingkat B.' },
+                                { q: '5. Jika memilih Tingkat C, apakah harus lulus Tingkat A dan B terlebih dahulu?', a: 'Tidak. Peserta dapat langsung mengikuti Tingkat C apabila memilih dan memenuhi ketentuan yang berlaku. Materi yang diujikan mencakup cakupan Tingkat A, B, dan C.' },
+                                { q: '6. Apa saja materi Tingkat A?', a: 'PPh OP dan SPT PPh OP; KUP, PPSP dan Pengadilan Pajak; PPh Pot/Put; PPN dan SPT PPN; serta Bea Meterai.' },
+                                { q: '7. Apa saja materi Tingkat B?', a: 'Tingkat B mencakup PPh Badan dan SPT PPh Badan, KUP/PPSP/Pengadilan Pajak, PPh Pot/Put, PPN dan SPT PPN, Akuntansi Perpajakan, PBB-P5L, PPh OP dan SPT PPh OP, serta Bea Meterai.' },
+                                { q: '8. Apa saja materi Tingkat C?', a: 'Tingkat C mencakup 10 kelompok materi, termasuk PPh Badan transaksi internasional, Pajak Internasional, PPh Pot/Put, Akuntansi Perpajakan, PPh Badan dalam negeri, KUP/PPSP/Pengadilan Pajak, PPN, PBB-P5L, PPh OP, dan Bea Meterai.' },
+                                { q: '9. Siapa yang dapat mengikuti UKP?', a: 'PMK 55/2026 mensyaratkan peserta merupakan Warga Negara Indonesia dan memiliki NPWP berupa NIK yang telah diaktivasi sebagai NPWP dalam administrasi perpajakan.' },
+                                { q: '10. Apakah pelatihan ini menjamin kelulusan UKP?', a: 'Tidak ada pelatihan yang dapat menjamin kelulusan ujian. Pelatihan bertujuan membantu peserta mempersiapkan diri melalui pembelajaran, latihan, pembahasan, dan strategi menghadapi ujian.' },
+                                { q: '11. Apakah materi pelatihan hanya berupa teori?', a: 'Tidak. Program dapat mencakup pembahasan konsep, contoh kasus, latihan soal, pembahasan soal, serta sesi diskusi dan tanya jawab sesuai paket pelatihan.' },
+                                { q: '12. Apakah pelatihan dilaksanakan secara online?', a: 'Ya. Pelatihan dilaksanakan secara online sehingga dapat diikuti dari lokasi masing-masing peserta.' },
+                                { q: '13. Apakah peserta mendapatkan sertifikat pelatihan?', a: 'Peserta mendapatkan sertifikat pelatihan sesuai ketentuan program yang diikuti.' },
+                                { q: '14. Apakah UKP sama dengan SKK?', a: 'Tidak. UKP adalah uji kompetensinya, sedangkan SKK merupakan Surat Keterangan Kompetensi yang diterbitkan bagi peserta yang dinyatakan lulus.' },
+                                { q: '15. Apakah UKP sama dengan izin sebagai konsultan pajak?', a: 'Tidak. UKP/SKK berkaitan dengan kompetensi. Ketentuan mengenai konsultan pajak dan pihak lain yang bertindak sebagai kuasa wajib pajak diatur lebih luas dalam PMK 55 Tahun 2026.' }
+                            ]">
+                                <div class="border-b border-gray-100 pb-4">
+                                    <button @click="openFaq === index ? openFaq = null : openFaq = index" class="flex justify-between items-center w-full text-left font-bold text-gray-900 hover:text-emerald-700 transition-colors">
+                                        <span x-text="faq.q"></span>
+                                        <svg class="w-5 h-5 text-emerald-500 transform transition-transform duration-200" :class="{'rotate-180': openFaq === index}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    </button>
+                                    <div x-show="openFaq === index" x-collapse class="mt-3 text-gray-600 text-sm leading-relaxed" x-text="faq.a" x-transition></div>
+                                </div>
+                            </template>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Area Home -->
                 <div class="border-t pt-12 text-center text-gray-500 text-sm">
                     <p class="mb-2">Pertanyaan lebih lanjut? Hubungi Sekretariat AKP2I di <strong class="text-emerald-700">0821-2228-5048</strong></p>
                     <p>Informasi jadwal dan teknis dapat mengikuti panduan resmi BPPK/Kemenkeu.</p>
@@ -327,12 +363,13 @@
                     <div class="mb-8">
                         <div class="space-y-3">
                             <template x-for="metode in daftarMetodeBayar" :key="metode.ID">
+                                <!-- Fix perbandingan obyek pada x-class, sebaiknya pakai ID -->
                                 <label class="block relative p-4 border-2 rounded-2xl cursor-pointer hover:bg-white fast-transition" 
-                                       :class="selectedPayment === metode ? 'border-emerald-500 bg-white shadow-md' : 'border-gray-200'">
+                                       :class="selectedPayment && selectedPayment.ID === metode.ID ? 'border-emerald-500 bg-white shadow-md' : 'border-gray-200'">
                                     
                                     <div class="flex items-start gap-4">
                                         <input type="radio" :value="metode" x-model="selectedPayment" class="mt-1 w-5 h-5 text-emerald-600 focus:ring-emerald-500">
-                                        <div class="flex-1">
+                                        <div class="flex-1 w-full">
                                             <div class="flex justify-between items-center mb-1">
                                                 <p class="font-bold text-gray-900 text-lg" x-text="metode['Nama Bank / E-Wallet']"></p>
                                                 <span class="text-xs font-bold px-2 py-1 rounded bg-gray-100 text-gray-600" x-text="metode['Jenis']"></span>
@@ -344,11 +381,17 @@
                                                 <p class="text-sm text-gray-600 font-medium">a.n <span class="font-bold" x-text="metode['Atas Nama']"></span></p>
                                             </div>
                                             
-                                            <!-- Jika QRIS -->
-                                            <div x-show="metode.Jenis === 'QRIS' && selectedPayment === metode" class="mt-4 flex flex-col items-center p-4 bg-gray-50 rounded-xl border">
-                                                <p class="text-xs font-bold text-gray-500 mb-2 uppercase">Scan QRIS Berikut:</p>
-                                                <img :src="metode['File QRIS']" alt="QRIS" class="w-48 h-48 object-contain rounded-lg shadow-sm bg-white p-2">
-                                                <p class="text-sm text-gray-600 font-bold mt-3" x-text="metode['Atas Nama']"></p>
+                                            <!-- Jika QRIS (Perbaikan kondisi tampil QRIS) -->
+                                            <div x-show="metode.Jenis === 'QRIS' && selectedPayment && selectedPayment.ID === metode.ID" class="mt-4 flex flex-col items-center p-4 bg-gray-50 rounded-xl border w-full">
+                                                <p class="text-xs font-bold text-gray-500 mb-2 uppercase text-center">Scan QRIS Berikut:</p>
+                                                <!-- Pastikan kolom 'File QRIS' berisi URL yg benar, atau link image Drive yang bisa diakses -->
+                                                <template x-if="metode['File QRIS']">
+                                                    <img :src="metode['File QRIS']" alt="QRIS" class="w-full max-w-[200px] h-auto object-contain rounded-lg shadow-sm bg-white p-2">
+                                                </template>
+                                                <template x-if="!metode['File QRIS']">
+                                                    <p class="text-sm text-red-500 italic">Gambar QRIS belum diunggah admin.</p>
+                                                </template>
+                                                <p class="text-sm text-gray-600 font-bold mt-3 text-center" x-text="metode['Atas Nama']"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -577,6 +620,7 @@
                                 <p class="font-mono text-emerald-600 font-bold mt-1 text-xl tracking-wider" x-text="m['Nomor Rekening']"></p>
                             </template>
                             
+                            <!-- Perbaikan tampilan link QRIS untuk admin -->
                             <template x-if="m.Jenis === 'QRIS' && m['File QRIS']">
                                 <div class="mt-3 bg-gray-50 p-2 rounded-lg border inline-block">
                                    <a :href="m['File QRIS']" target="_blank" class="text-xs font-bold text-blue-600 hover:underline flex items-center"><svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Lihat Gambar QRIS</a>
@@ -621,7 +665,7 @@
         // ===============================================================
         // PASTE URL SCRIPT GOOGLE APPS SCRIPT ANDA DI BAWAH INI
         // ===============================================================
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzY_Fwezhy4YRZY7ZzsNyidhWJyOlRFOp-RmUuJHdiPAmpcZrpkbQPzGx5mYmQz5meu/exec'; 
+        const SCRIPT_URL = 'PASTE_LINK_SCRIPT_DISINI'; 
 
         function appData() {
             return {
